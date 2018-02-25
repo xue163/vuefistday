@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!--
+  VUE是属于一个渐进式框架借鉴了angular的模板和数据绑定技术，同时借鉴了react的组件化和虚拟DOM技术
+双向数据绑定MVVM：首先我们需要创建一个vue的实例化对象const vm=new Vue(el:'#app',data:{msg},computed:{},watch:{})
+ 我们的一个model模板数据指的是我们data里面的数据，view指的是我们页面的视图层v-model指向data中的数据
+ viewmodel视图模板这个指的就是我们vm，主要是包含了一些数据绑定和dom事件监听
+ todo 目前的指令
+ 1.v-model="msg"：模板数据，主要是操作data里面的数据
+ 2.v-for="(item,index) in items":主要是利用了for in的原理可以遍历
+ 3.v-if="isShow"可以在data里面初始化isShow的布尔值，再通过methods事件监听进行改变
+ 4.v-else=""此处我们也可以直接只写v-else，如果为false直接将元素进行注释掉
+ 5.v-show="isShow"和v-if类似区别在于,v-if将元素注释掉,v-show将元素display:none如果我们频繁操作一个元素建议v-show
+ 这样不需要一直注释，如果只有一两次操作建议v-if
+ 6.v-bind:href/:href强制绑定数据也就是将数据中的解析为js代码作为表达式进行解析
+ 7.v-on:click="test(‘abc’实参值,$event)"/@click事件的绑定
+     methods:{test(msg形参值,event)}
+ 8.{{}}两个大括号直接读取data里面的数据值
+ 9.class绑定与style绑定
+   9.1字符串绑定 :class="a"，这种在data里面样式已经写好了
+   9.2class是对象 :class="{classa:isA,classb:isB}"这种情况下用的比较多，可用于class之间的切换
+   9.3class是数组 :class="['c1','c2']"这种情况用于有多个class样式但是写死了
+ todo 目前vm里面的操作
+ 1.el:"元素id"
+ 2.data:"初始化数据也就是v-model数据"
+ 3.method：{handclick(){}}触发事件的方法
+ 4.computed:{}计算值可以计算出data里面的数据值
+ 5.watch:{事件名}监视数据的变化，但是不可以做出任何的改变
+ 6.vm.$watch('要监视的数据名'，回调函数)外部检测数据的变化
+ todo 数组的方法
+ array.slice(截取的开始位置，截取的结束位置index+1)
+ array.splicce(删除的开始位置，删除的个数，要替换的元素)
+ array.split(' ')分割字符串为字符串数组的模式
+ todo 组件的声明周期
+ 1)初始化显示：
+ beforecreate(在创建之前)
+ created(创建以后)
+ beforeMount(渲染之前)
+ mounted(渲染以后)
+ 2)更新状态
+ beforeUpdate(更新数据之前)
+ updated(更新以后)
+ 3)销毁vue实例对象vm.$destory()
+ beforeDestory(销毁之前)
+ destoryed(销毁以后)
+ 常用的声明周期方法
+ created()/mounted()发送ajax请求，启动定时器等异步任务
+ beforeDestory()做一些收尾工作，比如清理定时器
+todo vue动画的理解
+v-leave-active: v-leave---v-leave-to这个是首先我上来元素从开始到离开的一个过程的过渡
+v-enter-active: v-enter---v-enter-to这个是元素消失以后到进来的一个效果
+整体用transition闭合标签包起来过渡的一个元素
+ <transition name="fade">
+  <p v-show="ok">hello</p>
+  </transition>
+
+   .fade-enter-active,.fade-leave-active{
+      /*此时是两次动画当我初次进入的时候，以及消失以后所包含的值*/
+      transition: opacity 1s;
+    }
+    .fade-enter,.fade-leave-to{
+      /*这个是我进入以后以及离开以后所包含的值*/
+      opacity: 0;
+    }
+
+
+
+   1. components:{这个里面首先定义我们引进来的项目作为一个组件 App:APP}
+   2. template：<APP/>定义组件然后在我们template项目中直接进行定义的使用 没有直接使用的需要在这个地方声明下是个
+    标签，如果使用了不需要进行声明  直接使用就可以了
+    拆分组件 add  list  item这三个组件
+   3.props:['todos']我们通过父组件标签接收一个属性通过props进行声明下
+    props:{此地也可以是一个对象 todo:Object规定其类型 index：{type：number}}
+   4. 子组件传递数据给父组件 父组件定义方法传入形参，子组件调用方法传入实参
+     删除的方法，首先我们想要删除item里面的某一项，提前先定好我们的index，然后父组件规定好方法，子组件直接
+     接收该方法，最后将该方法接收并且写入实参
+   5. render h=>h(app)调用app进行整体的一个渲染
+   6.整体理解：首先我们是收集数据  判断数据合法性  整理数据  将数据交给父组件  清空内容
+   7.v-on绑定事件的监听 $.emit触发事件
+    main.js主要的一个组件 主要做的就是vm的部分引入我们写完的vue模块
+    static主要是放置一些公共的静态资源部分
+    index.HTML放置我们最后已经编译好的
+    config里面放置的都是属于js部分的代码也就是我们已经生成好的
+    -->
+</head>
+<body>
+
+</body>
+</html>
